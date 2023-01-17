@@ -1,0 +1,23 @@
+name: build-pi-image
+
+on:
+  repository_dispatch:
+    types: *
+
+jobs:
+  build-image:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: APT update
+      run: |
+        sudo apt update
+        sudo apt install binfmt-support
+        sudo apt install qemu qemu-user-static
+        sudo update-binfmts --enable
+    - name: Build Image
+      run: ./build-docker.sh
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./deploy/img_name.dmg
