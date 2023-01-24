@@ -1,0 +1,8 @@
+IMG_NAME='Eyespy-Jammy'
+ENABLE_SSH=1
+FIRST_USER_NAME=pi
+FIRST_USER_PASS=a
+LOCALE_DEFAULT=en_US.UTF-8
+TIMEZONE_DEFAULT=America/New_York
+EYESPY_REPO='https://github.com/eyespy-cam/human-detector'
+EYESPY_TAG='v0.1'
