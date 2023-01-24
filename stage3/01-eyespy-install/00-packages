@@ -1,0 +1,7 @@
+git
+ffmpeg
+python3-pip
+build-essential
+libcairo2-dev
+libgirepository1.0-dev
+libdbus-glib-1-dev

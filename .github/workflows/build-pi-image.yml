@@ -15,6 +15,8 @@ jobs:
         sudo apt install binfmt-support
         sudo apt install qemu qemu-user-static
         sudo update-binfmts --enable
+    - name: Set Tag
+      run: echo "EYESPY_TAG='v0.1'" >> config
     - name: Build Image
       run: ./build-docker.sh
     - name: Release
