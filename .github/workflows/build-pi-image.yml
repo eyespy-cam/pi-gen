@@ -3,6 +3,7 @@ name: build-pi-image
 on:
   repository_dispatch:
     types: [eyespy-release]
+  workflow_dispatch:
     inputs:
       eyespy_tag:
         description: 'Eyespy Release Tag'
