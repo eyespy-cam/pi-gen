@@ -2,7 +2,11 @@ name: build-pi-image
 
 on:
   repository_dispatch:
-    types: *
+    types: [eyespy-release]
+      inputs:
+        eyespy_tag:
+          description: 'Eyespy Release Tag'
+          required: true
 
 jobs:
   build-image:
@@ -16,10 +20,10 @@ jobs:
         sudo apt install qemu qemu-user-static
         sudo update-binfmts --enable
     - name: Set Tag
-      run: echo "EYESPY_TAG='v0.1'" >> config
+      run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> config
     - name: Build Image
       run: ./build-docker.sh
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: ./deploy/img_name.dmg
+        files: ./deploy/*.zip
