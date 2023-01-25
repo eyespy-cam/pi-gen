@@ -24,7 +24,7 @@ jobs:
       run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> $GITHUB_ENV
       if: ${{ github.event_name == 'repository_dispatch' }}
     - name: Set Tag Workflow
-      run: echo "EYESPY_TAG='${{ input.eyespy_tag }}'" >> $GITHUB_ENV
+      run: echo "EYESPY_TAG='${{ inputs.eyespy_tag }}'" >> $GITHUB_ENV
       if: ${{ github.event_name == 'workflow_dispatch' }}
     - run: echo "EYESPY_TAG=${{ env.EYESPY_TAG }}" >> config
     - run: echo ${{ env.EYESPY_TAG }}
