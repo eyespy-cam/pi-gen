@@ -25,12 +25,12 @@ jobs:
         sudo apt install qemu qemu-user-static
         sudo update-binfmts --enable
     - name: Set Tag Repository
-      run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> $GITHUB_ENV
+      run: echo "EYESPY_TAG=${{ github.event.client_payload.eyespy_tag }}" >> $GITHUB_ENV
       if: ${{ github.event_name == 'repository_dispatch' }}
     - name: Set Tag Workflow
       run: echo "EYESPY_TAG='${{ inputs.eyespy_tag }}'" >> $GITHUB_ENV
       if: ${{ github.event_name == 'workflow_dispatch' }}
-    - run: echo "EYESPY_TAG=${{ env.EYESPY_TAG }}" >> config
+    - run: echo "EYESPY_TAG='${{ env.EYESPY_TAG }}'" >> config
     - run: echo ${{ env.EYESPY_TAG }}
     - name: Build Image
       run: ./build-docker.sh
