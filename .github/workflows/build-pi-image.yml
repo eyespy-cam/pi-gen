@@ -3,10 +3,10 @@ name: build-pi-image
 on:
   repository_dispatch:
     types: [eyespy-release]
-      inputs:
-        eyespy_tag:
-          description: 'Eyespy Release Tag'
-          required: true
+    inputs:
+      eyespy_tag:
+        description: 'Eyespy Release Tag'
+        required: true
 
 jobs:
   build-image:
