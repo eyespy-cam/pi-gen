@@ -233,6 +233,17 @@ export WPA_COUNTRY
 export ENABLE_SSH="${ENABLE_SSH:-0}"
 export PUBKEY_ONLY_SSH="${PUBKEY_ONLY_SSH:-0}"
 
+if [ -z "${EYESPY_REPO}" ]; then
+	echo "EYESPY_REPO not set" 1>&2
+fi
+
+if [ -z "${EYESPY_TAG}" ]; then
+	echo "EYESPY_TAG not set" 1>&2
+fi
+
+export EYESPY_REPO=${EYESPY_REPO}
+export EYESPY_TAG=${EYESPY_TAG}
+
 export LOCALE_DEFAULT="${LOCALE_DEFAULT:-en_GB.UTF-8}"
 
 export KEYBOARD_KEYMAP="${KEYBOARD_KEYMAP:-gb}"
