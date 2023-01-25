@@ -1,5 +1,9 @@
 name: build-pi-image
 
+# Need write permission to release
+permissions:
+  contents: write
+
 on:
   repository_dispatch:
     types: [eyespy-release]
