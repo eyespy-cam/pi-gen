@@ -20,13 +20,19 @@ jobs:
         sudo apt install binfmt-support
         sudo apt install qemu qemu-user-static
         sudo update-binfmts --enable
-    - name: Set Tag
-      run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> config
-    - run: git tag ${{ github.event.client_payload.eyespy_tag }}
+    - name: Set Tag Repository
+      run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> $GITHUB_ENV
+      if: ${{ github.event_name == 'repository_dispatch' }}
+    - name: Set Tag Workflow
+      run: echo "EYESPY_TAG='${{ input.eyespy_tag }}'" >> $GITHUB_ENV
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+    - run: echo "EYESPY_TAG=${{ env.EYESPY_TAG }}" >> config
+    - run: echo ${{ env.EYESPY_TAG }}
+    - run: git tag ${{ env.EYESPY_TAG }}
     - name: Build Image
       run: ./build-docker.sh
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: ./deploy/*.zip
-        name: "RPi 64 bit Image for ${{ github.event.client_payload.eyespy_tag }}"
+        name: "RPi 64 bit Image for ${{ env.EYESPY_TAG }}"
