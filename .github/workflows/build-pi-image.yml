@@ -21,9 +21,11 @@ jobs:
         sudo update-binfmts --enable
     - name: Set Tag
       run: echo "EYESPY_TAG='${{ github.event.client_payload.eyespy_tag }}'" >> config
+    - run: git tag ${{ github.event.client_payload.eyespy_tag }}
     - name: Build Image
       run: ./build-docker.sh
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: ./deploy/*.zip
+        name: "RPi 64 bit Image for ${{ github.event.client_payload.eyespy_tag }}"
