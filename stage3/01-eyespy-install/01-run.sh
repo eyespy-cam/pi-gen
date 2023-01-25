@@ -12,7 +12,7 @@ cp -r ./eyespy_cam/camera/detector/model/* "${ROOTFS_DIR}/usr/local/bin/eyespy/d
 cp -r ./eyespy_cam/camera/auth/src/* "${ROOTFS_DIR}/usr/local/bin/eyespy/auth"
 
 cp -r ./eyespy_cam/camera/auth/requirements.txt "${ROOTFS_DIR}/req_auth.txt"
-cp -r ./eyespy_cam/camera/detector/requirements.txt "${ROOTFS_DIR}/req_detector.txt"
+cp -r ./eyespy_cam/camera/detector/runtime-requirements.txt "${ROOTFS_DIR}/req_detector.txt"
 
 # Copy systemd configs for services
 cp -r ./eyespy_cam/camera/systemd/*.service "${ROOTFS_DIR}/etc/systemd/system"
